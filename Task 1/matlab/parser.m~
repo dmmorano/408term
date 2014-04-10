@@ -1,0 +1,19 @@
+function parser(filename)
+
+
+[DATE, STATION, LAT, LON, WNDSPD, WNDDIR, USTAR, CD, WAVSTRS, HMO, TPD, TP, TM, TM1, TM2, WAVD, SPRD, ~, ~, ~, ~, ~, ~, ~, ~, ~, ~, ~, ~, ~, ~, ~, ~]...
+    = textread(filename,'%f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f','headerlines',0);
+
+% Date parsing
+DATEstring = num2str(DATE);
+[YY,MM,DD,HH,mm,ss] = datevec(DATEstring,'yyyymmddHHMMSS');
+
+ID = STATION;
+YEAR = YY;
+DPTH = NaN;
+DTp = TPD;
+Atp = TP;
+tmean = TM1;
+wdvmn = WAVED
+
+% [ID YEAR MM DD HH LONG LAT DPTH Hmo DTp Atp tmean wdvmn wv wsp wdir ]
