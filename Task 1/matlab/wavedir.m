@@ -25,7 +25,7 @@ function wavedir(filename)
 %                               wdir 	= Wind direction in MET convention 
 
 
-[ID YEAR MM DD HH LONG LAT DPTH Hmo DTp Atp tmean wdvmn wv wsp wdir ] = textread(filename,'%f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f','headerlines',1);
+[ID YEAR MM DD HH LONG LAT DPTH Hmo DTp Atp tmean wdvmn wv wsp wdir ] = textread(filename,'%f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f','headerlines',0);
 
 recordCount = length(wdvmn)
 degAvg = mean(wdvmn)
