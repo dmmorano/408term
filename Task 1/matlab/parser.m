@@ -1,5 +1,4 @@
 function parser(fileout,filein)
-
 disp 'Parsing Data...'
 
 [DATE, STATION, LAT, LONG, WNDSPD, WNDDIR, USTAR, CD, WAVSTRS, Hmo, TPD, TP, TM, TM1, TM2, WAVD, SPRD, ~, ~, ~, ~, ~, ~, ~, ~, ~, ~, ~, ~, ~, ~, ~, ~]...
@@ -20,7 +19,7 @@ wsp = WNDSPD;
 wdir = WNDDIR;
 
 parsed = [ID YEAR MM DD HH LONG LAT DPTH Hmo DTp Atp tmean wdvmn wv wsp wdir];
-csvwrite(fileout,parsed);
+dlmwrite(fileout,parsed);
 disp 'Output File Produced'
 end
 

@@ -7,7 +7,7 @@
 
 % Parse data in to useable format
 
-parser('ST63079.csv','ST63079_v01.onlns')
+parser('ST63079.txt','ST63079_v01.onlns')
 
 % Plot wave direction concentrations
-wavedir('ST63079.csv')
+wavedir('ST63079.txt')

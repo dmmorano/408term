@@ -25,13 +25,13 @@ function wavedir(filename)
 %                               wdir 	= Wind direction in MET convention 
 
 
-[ID YEAR MM DD HH LONG LAT DPTH Hmo DTp Atp tmean wdvmn wv wsp wdir ] = textread(filename,'%f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f','headerlines',0);
-
-recordCount = length(wdvmn)
-degAvg = mean(wdvmn)
+M = dlmread(filename);
+wdvmn = M(:,13);
+recordCount = length(wdvmn);
+degAvg = mean(wdvmn);
 
 % instantiate vector to set direction bins
-degCount = [0 30 60 90 120 150 180 210 240 270 300 330]
+degCount = [0 30 60 90 120 150 180 210 240 270 300 330];
 
 % convert bins and wave direction to THETA values
 wdvmnTHETA = wdvmn.*pi.*2 ./360;
