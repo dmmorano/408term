@@ -38,7 +38,6 @@ wdvmnTHETA = wdvmn.*pi.*2 ./360;
 degCountTHETA = degCount.*pi.*2 ./360;
 
 % plot wave directions
-figure(1)
 rose(wdvmnTHETA,degCountTHETA)
 
 % format plot

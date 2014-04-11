@@ -28,8 +28,8 @@ function monthextrema(filename,direction,dirBin)
 %               dirBin      :   (optional, default = 30 degrees) size of direction band 
 %                               that will be centered around the direction of interest.
 
-M = dlmread(filename);
-wdvmn = M(:,13);
+[ID YEAR MM DD HH LONG LAT DPTH Hmo DTp Atp tmean wdvmn wv wsp wdir ] = ...
+    textread(filename,'%f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f','headerlines',1);
 
 % check for optional arguments
 if nargin < 3, dirBin = 30; end     % no direction bin specified, use default of 30 degrees
@@ -48,20 +48,8 @@ if direction~=-1 && direction<=360 && direction>=0
     else
         DirIndexes = find(wdvmn>=minDir & wdvmn<maxDir);
     end
-end
     
     % create new vectors for the specified direction and bin
-    
-    ID = M(:,1);
-    YEAR = M(:,2);
-    MM = M(:,3);
-    DD = M(:,4);
-    HH = M(:,5);
-    LONG = M(:,6);
-    LAT = M(:,7);
-    Hmo = M(:,9);
-
-    
     ID = ID(DirIndexes);
     YEAR = YEAR(DirIndexes);
     MM = MM(DirIndexes);
@@ -69,8 +57,16 @@ end
     HH = HH(DirIndexes);
     LONG = LONG(DirIndexes);
     LAT = LAT(DirIndexes);
+    DPTH = DPTH(DirIndexes);
     Hmo = Hmo(DirIndexes);
-
+    DTp = DTp(DirIndexes);
+    Atp = Atp(DirIndexes);
+    tmean = tmean(DirIndexes);
+    wdvmn = wdvmn(DirIndexes);
+    wv = wv(DirIndexes);
+    wsp = wsp(DirIndexes);
+    wdir = wdir(DirIndexes);    
+end
 
 % initialize values
 recordCount = length(Hmo)
@@ -113,15 +109,12 @@ end
 fid = fopen(filename,'w');
 
 % loop through the extreme IDs and write out the results to the file
-% for k = 1:length(extremeIds)
-%     out = [ID(extremeIds(k)) YEAR(extremeIds(k)) MM(extremeIds(k)) DD(extremeIds(k)) HH(extremeIds(k)) ...
-%             LONG(extremeIds(k)) LAT(extremeIds(k)) DPTH(extremeIds(k)) Hmo(extremeIds(k)) DTp(extremeIds(k)) ...
-%             Atp(extremeIds(k)) tmean(extremeIds(k)) wdvmn(extremeIds(k)) wv(extremeIds(k)) wsp(extremeIds(k)) wdir(extremeIds(k))];
-%     fprintf(fid,'%4.0f %4.0f %4.0f %4.0f %4.0f %9.5f %9.5f %9.5f %9.5f %9.5f %9.5f %9.5f %9.5f %9.5f %9.5f %9.5f\r',out);
-% end 
-
+for k = 1:length(extremeIds)
+    out = [ID(extremeIds(k)) YEAR(extremeIds(k)) MM(extremeIds(k)) DD(extremeIds(k)) HH(extremeIds(k)) ...
+            LONG(extremeIds(k)) LAT(extremeIds(k)) DPTH(extremeIds(k)) Hmo(extremeIds(k)) DTp(extremeIds(k)) ...
+            Atp(extremeIds(k)) tmean(extremeIds(k)) wdvmn(extremeIds(k)) wv(extremeIds(k)) wsp(extremeIds(k)) wdir(extremeIds(k))];
+    fprintf(fid,'%4.0f %4.0f %4.0f %4.0f %4.0f %9.5f %9.5f %9.5f %9.5f %9.5f %9.5f %9.5f %9.5f %9.5f %9.5f %9.5f\r',out);
+end 
 
 fclose(fid);
-
-end
 
