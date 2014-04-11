@@ -1,0 +1,15 @@
+	Bathymetry for Narragansett Bay was 
+derived from fifteen surveys containing 165,184 
+soundings. Three older, less accurate, overlapping 
+surveys were entirely omitted, and the overlap from 
+six older, less accurate surveys was omitted before 
+tinning the data. The average separation between 
+soundings was 50 meters. The fifteen surveys used 
+dated from 1943 to 1957. The total range of 
+sounding data was 1.2 meters to -58.8 meters at 
+mean low water. Mean high water values between 
+0.9 and 1.4 meters were assigned to the shoreline. 
+Four points were found that were not consistent 
+with the surrounding data. These were removed 
+prior to tinning. Narragansett Bay has thirteen 7.5 
+minute DEMs and a single one degree DEM.
