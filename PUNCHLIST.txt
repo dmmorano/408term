@@ -1,3 +1,10 @@
 Everyone list stuff to do here:
 
-hi guise
+
+
+Task 2:
+
+1) Import bathymetry data for Narragansett Bay into MATLAB.
+2) Identify beach region that will be used for wave analysis.
+2a) Clarify with Dahl on the usage of actual bathymetry data. According to the lab, it claims an estimation should be made for slope based on the data.
+3) Use wave data from Task 1 to do stuff.
