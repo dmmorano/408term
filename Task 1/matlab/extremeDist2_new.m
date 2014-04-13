@@ -40,8 +40,8 @@ wv = M(:,14);
 Hmo = M(:,9);
 ID = M(:,1);
 YEAR = M(:,2);
-dirmean =  mean(wv)
-DTp = M(:,10)
+dirmean =  mean(wv);
+DTp = M(:,10);
 
 
 % initialize values
@@ -53,24 +53,24 @@ Trm = Dt./(1 - Fm);      % Return period of x(m) in years
 % Hmo analyses
 % 
 Hmo       = sort(Hmo,'descend');   % sort Hmo array in descending order
-HmoMean   = mean(Hmo)              % Mean Hs
-HmoStdDev = std(Hmo)               % sigma Hs
+HmoMean   = mean(Hmo);              % Mean Hs
+HmoStdDev = std(Hmo);               % sigma Hs
 Tp        = 15.66.*sqrt((Hmo/g));  % Tp values for data based on FDS assumption
 
-Ath = 0.78*HmoStdDev               % Theoretical Gumbel coefficient A 
-Bth = HmoMean - 0.45*HmoStdDev     % Theoretical Gumbel coefficient B 
+Ath = 0.78*HmoStdDev;               % Theoretical Gumbel coefficient A 
+Bth = HmoMean - 0.45*HmoStdDev;     % Theoretical Gumbel coefficient B 
 
 % Gumbel linear curve fit and its confidence hyperbolas
 % 
 Pp       = -log(-log(Fm))';         % Gumbel transformation
 p        = polyfit(Pp,Hmo,1);
 Hmofit   = polyval(p,Pp);
-A        = p(1)
-B        = p(2)
+A        = p(1);
+B        = p(2);
 
 STC      = sum((Hmo - HmoMean).^2);
 SCR      = sum((Hmo - Hmofit).^2);
-R2       = 1 - SCR/STC
+R2       = 1 - SCR/STC;
 
 s2res    = SCR/(N-2);
 PpMean   = mean(Pp);                     

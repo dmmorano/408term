@@ -65,8 +65,9 @@ end
     tmean = M(:,12);
     wv = M(:,14);
     wsp = M(:,15);
-    wdir = M(:,16);
+    widr = M(:,16);
     
+
     
     ID = ID(DirIndexes);
     YEAR = YEAR(DirIndexes);
@@ -77,11 +78,8 @@ end
     LAT = LAT(DirIndexes);
     Hmo = Hmo(DirIndexes);
     DTp = DTp(DirIndexes);
-    Atp = Atp(DirIndexes);
+    Atp = Atp(DirIndexes):
     tmean = tmean(DirIndexes);
-    wv = wv(DirIndexes);
-    wsp = wsp(DirIndexes);
-    wdir = wdir(DirIndexes);
     
 
 % initialize values
