@@ -1,6 +1,5 @@
 function extremeDist2_new(filename)
 
-close all;
 %e.g., filename = 'monthlyExtreme79.txt'
 
 %extremeDist2_new(filename)
@@ -36,10 +35,14 @@ Dt           = 1/12;       % time interval of monthy mx dat in years
 CLtresh      = 0.05;       % 1- alha = 95% confidence limit level     
 extremeMarks = [100 75 50 20 10 1 .1];  % Set of regular and extreme Tr values 
 
-[ID YEAR MM DD HH LONG LAT DPTH Hmo DTp Atp tmean wdvmn wv wsp wdir ]...
- = textread(filename,'%f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f','headerlines',0);
-
+M = dlmread(filename);
+wv = M(:,14);
+Hmo = M(:,9);
+ID = M(:,1);
+YEAR = M(:,2);
 dirmean =  mean(wv)
+DTp = M(:,10)
+
 
 % initialize values
 %
@@ -91,7 +94,7 @@ CLTp_down  = 15.66.*sqrt((CLHmo_down/g));
 
 % plot distributions of Hs
 
-figure (1)
+figure()
 hold on;
 plot(Pp,Hmo,'b.');  % Sample N
 plot(Fp,HmoTyrs,'k-')
@@ -120,7 +123,7 @@ hold off
 
 % plot distributions of Tp assuming FDS
 
-figure (2)
+figure()
 hold on;
 plot(Pp,Tp,'b.');  % Sample N
 plot(Fp,Tpyrs,'k-')
@@ -148,7 +151,7 @@ hold off
 
 % Compare FDS Tp to measured Tp
 
-figure (3)
+figure()
 hold on;
 plot(Tp,DTp,'b.');  % FDS vs. Sample N
 plot(Tp,Tp,'k-');   % 45 deg. best fit line
