@@ -1,10 +1,6 @@
 Everyone list stuff to do here:
 
-Task 1:
 
-1) fix monthly extrema data.
-2) derive period using fully developed/fetch limited conditions
-3) table of 20 - 50 years data
 
 Task 2:
 
