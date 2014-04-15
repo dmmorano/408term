@@ -3,17 +3,17 @@
 % need to run compile_c_files.m in that directory before using
 
 %Set directory including path of fast marching and bathymetry
-addpath(genpath('C:\Users\Anthony\Documents\Classes\OCE 408\Waveray'))
-
+%addpath(genpath('C:\Users\Anthony\Documents\Classes\OCE 408\Waveray'))
+addpath(genpath('FastMarching_version3b'))
 
 % parameters
-T = 10.0; % period
-HO = 1.0; % waveheight
-ang = -10.0; % degrees CW from N
+T = 12.86; % period
+HO = 6.62; % waveheight
+ang = 10; % degrees CW from N
 
 % obtain grid
-myRes = 20; % resolution in meters
-myGrid = [-10 10 0 20]*1e3; % grid size
+myRes = 10; % resolution in meters
+myGrid = [-15 10 0 30]*1e3; % grid size
 ProjectionOrigin = [41.32 -71.44 0]; % coordinates of origin
 
 % compute excess
@@ -43,7 +43,8 @@ mylon = ProjectionOrigin(2)+E/R*180/pi/cos(ProjectionOrigin(1)*pi/180);
 % produce bathymetry
 % download netcdf file from http://www.ngdc.noaa.gov/mgg/coastal/grddas01/grddas01.htm
 
-ncid = netcdf.open('C:\Users\Anthony\Documents\Classes\OCE 408\Waveray\ne_atl_crm_v1.nc\ne_atl_crm_v1.nc','NC_NOWRITE');
+%ncid = netcdf.open('C:\Users\Anthony\Documents\Classes\OCE 408\Waveray\ne_atl_crm_v1.nc\ne_atl_crm_v1.nc','NC_NOWRITE');
+ncid = netcdf.open('./ne_atl_crm_v1.nc', 'NC_NOWRITE')
 varid = netcdf.inqVarID(ncid,'x');
 lon = netcdf.getVar(ncid,varid);
 varid = netcdf.inqVarID(ncid,'y');
@@ -51,6 +52,19 @@ lat = netcdf.getVar(ncid,varid);
 varid = netcdf.inqVarID(ncid,'z');
 z = netcdf.getVar(ncid,varid);
 netcdf.close(ncid);
+
+% This is so we don't load the bathy data for the whole north east coastline
+% will snyder
+%%%%%%%%%%%%%
+myGrid = [-15 10 0 30]*1e3; % grid siz
+indexlat = lat' > 40.9 & lat' < 42;
+indexlon = lon' > -71.8 & lon' < -70.8;
+lat = lat(indexlat);
+lon = lon(indexlon);
+z = z(indexlon, indexlat);
+%%%%%%%%%%%%%
+
+
 [crmlon,crmlat] = meshgrid(lon,lat);
  bathy = -interp2(crmlon,crmlat,double(z'),mod(mylon+180,360)-180,mylat);
 
@@ -87,13 +101,14 @@ clf;
 % wave fronts
 contour(mylon,mylat,tt,0:1e2:5e3);
 % streamlines 
-streamline(mylon,mylat,cx,cy,flon(1:20:end),flat(1:20:end),[myRes 100000]);
+h = streamline(mylon,mylat,cx,cy,flon(1:20:end),flat(1:20:end),[myRes 100000]);
+set(h,'Color','red');
 % fix aspect ratio
 ylim = get(gca,'ylim');
 set(gca,'DataAspectRatio',[1 cos(mean(ylim)*pi/180) 1]);
 % trim off bottom of graph
 axis([mylon(excess+1,1) mylon(excess+1,end) mylat(excess+1,1) mylat(end,1)]);
-title(['H_o=' num2str(HO) 'm' 'T=' num2str(T) 's' '\theta=' num2str(ang) '° CW of North'])
+title(['H_o=' num2str(HO) 'm' 'T=' num2str(T) 's' '\theta=' num2str(ang) 'ï¿½ CW of North'])
 xlabel('Longitude')
 ylabel('Latitude')
 % draft for solving energy equation
