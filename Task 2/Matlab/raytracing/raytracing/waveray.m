@@ -1,3 +1,4 @@
+function [] = waveray(T,HO,ang)
 % path of fast marching library
 % download from http://www.mathworks.com/matlabcentral/fileexchange/24531-accurate-fast-marching
 % need to run compile_c_files.m in that directory before using
@@ -6,13 +7,15 @@
 %addpath(genpath('C:\Users\Anthony\Documents\Classes\OCE 408\Waveray'))
 addpath(genpath('FastMarching_version3b'))
 
+
+
 % parameters
-T = 12.86; % period
-HO = 6.62; % waveheight
-ang = 10; % degrees CW from N
+T = T; % period
+HO = HO; % waveheight
+ang = ang; % degrees CW from N
 
 % obtain grid
-myRes = 10; % resolution in meters
+myRes = 6; % resolution in meters
 myGrid = [-15 10 0 30]*1e3; % grid size
 ProjectionOrigin = [41.32 -71.44 0]; % coordinates of origin
 
@@ -69,7 +72,7 @@ z = z(indexlon, indexlat);
  bathy = -interp2(crmlon,crmlat,double(z'),mod(mylon+180,360)-180,mylat);
 
 % get wavespeed
-% requires ldis.m
+% requires ldis.m 
 h = max(bathy,0.0);
 %c = sqrt(9.8*h);
 k = 2*pi./ldis(T,h);
@@ -97,7 +100,7 @@ cx = tx./dt.*cg;
 cy = ty./dt.*cg;
 
 % make sample plot
-clf;
+figure;
 % wave fronts
 contour(mylon,mylat,tt,0:1e2:5e3);
 % streamlines 
@@ -118,3 +121,6 @@ ylabel('Latitude')
 %     H2(j+1,:) = (cy(j,:).*H2(j,:)-myRes*gradient(cx(j,:).*H2(j,:),myRes))./cy(j,:);
 %     H2(j+1,cy(j+1,:)==0)=0;
 % end
+
+
+end
