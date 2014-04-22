@@ -15,8 +15,8 @@ HO = HO; % waveheight
 ang = ang; % degrees CW from N
 
 % obtain grid
-myRes = 6; % resolution in meters
-myGrid = [-15 10 0 30]*1e3; % grid size
+myRes = 20; % resolution in meters
+myGrid = [-10 5 0 20]*1e3; % grid size
 ProjectionOrigin = [41.32 -71.44 0]; % coordinates of origin
 
 % compute excess
@@ -59,9 +59,9 @@ netcdf.close(ncid);
 % This is so we don't load the bathy data for the whole north east coastline
 % will snyder
 %%%%%%%%%%%%%
-myGrid = [-15 10 0 30]*1e3; % grid siz
+myGrid = [-5 5 0 30]*1e3; % grid siz
 indexlat = lat' > 40.9 & lat' < 42;
-indexlon = lon' > -71.8 & lon' < -70.8;
+indexlon = lon' > -71.54 & lon' < -70.34;
 lat = lat(indexlat);
 lon = lon(indexlon);
 z = z(indexlon, indexlat);
@@ -86,9 +86,10 @@ if (ang>0)
 else
     fronty = round(tan(-ang*pi/180)*frontx)+1;
 end;
-% translate to lat/lon
-flon = mylon(sub2ind(size(mylon),fronty,frontx));
+% translat to lat/lon
+%flon = mylon(sub2ind(size(mylon),fronty,frontx));
 flat = mylat(sub2ind(size(mylat),fronty,frontx));
+flon = linspace(-71.65,-71.55,length(flat));
 
 % compute traveltime in seconds
 tt = msfm(cp/myRes,[fronty;frontx],true,true);
@@ -111,7 +112,7 @@ ylim = get(gca,'ylim');
 set(gca,'DataAspectRatio',[1 cos(mean(ylim)*pi/180) 1]);
 % trim off bottom of graph
 axis([mylon(excess+1,1) mylon(excess+1,end) mylat(excess+1,1) mylat(end,1)]);
-title(['H_o=' num2str(HO) 'm' 'T=' num2str(T) 's' '\theta=' num2str(ang) '� CW of North'])
+title(['H_o=' num2str(HO) 'm' 'T=' num2str(T) 's' '\theta=' num2str(ang) 'CW of North'])
 xlabel('Longitude')
 ylabel('Latitude')
 % draft for solving energy equation
