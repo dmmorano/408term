@@ -1,8 +1,10 @@
 T = [10.2 9.58];
 HO = [4.16 3.67];
 ang = [150 180 210];
+flon_150 = [-71.4255 -71.4207];
+flon_210 = [-71.468 -71.458];
 
-waveray(T(1),HO(1),ang(3))
+waveray(T(1),HO(1),ang(3),flon_210(1), flon_210(2))
 % 
 % for i = 1:1:length(T)
 %     for j = 1:1:length(ang)

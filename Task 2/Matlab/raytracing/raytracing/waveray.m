@@ -1,4 +1,4 @@
-function [] = waveray(T,HO,ang)
+function [] = waveray(T,HO,ang,flon1, flon2)
 % path of fast marching library
 % download from http://www.mathworks.com/matlabcentral/fileexchange/24531-accurate-fast-marching
 % need to run compile_c_files.m in that directory before using
@@ -15,7 +15,7 @@ HO = HO; % waveheight
 ang = ang; % degrees CW from N
 
 % obtain grid
-myRes = 20; % resolution in meters
+myRes = 10; % resolution in meters
 myGrid = [-10 5 0 20]*1e3; % grid size
 ProjectionOrigin = [41.32 -71.44 0]; % coordinates of origin
 
@@ -59,7 +59,7 @@ netcdf.close(ncid);
 % This is so we don't load the bathy data for the whole north east coastline
 % will snyder
 %%%%%%%%%%%%%
-myGrid = [-5 5 0 30]*1e3; % grid siz
+myGrid = [-10 5 0 20]*1e3; % grid siz
 indexlat = lat' > 40.9 & lat' < 42;
 indexlon = lon' > -71.54 & lon' < -70.34;
 lat = lat(indexlat);
@@ -89,7 +89,7 @@ end;
 % translat to lat/lon
 %flon = mylon(sub2ind(size(mylon),fronty,frontx));
 flat = mylat(sub2ind(size(mylat),fronty,frontx));
-flon = linspace(-71.65,-71.55,length(flat));
+flon = linspace(flon1,flon2,length(flat));
 
 % compute traveltime in seconds
 tt = msfm(cp/myRes,[fronty;frontx],true,true);
