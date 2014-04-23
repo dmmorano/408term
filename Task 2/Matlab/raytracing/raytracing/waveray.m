@@ -15,8 +15,8 @@ HO = HO; % waveheight
 ang = ang; % degrees CW from N
 
 % obtain grid
-myRes = 10; % resolution in meters
-myGrid = [-10 5 0 20]*1e3; % grid size
+myRes = 15; % resolution in meters
+myGrid = [-10 5 -5 20]*1e3; % grid size
 ProjectionOrigin = [41.32 -71.44 0]; % coordinates of origin
 
 % compute excess
@@ -59,7 +59,7 @@ netcdf.close(ncid);
 % This is so we don't load the bathy data for the whole north east coastline
 % will snyder
 %%%%%%%%%%%%%
-myGrid = [-10 5 0 20]*1e3; % grid siz
+myGrid = [-10 5 -5 20]*1e3; % grid siz
 indexlat = lat' > 40.9 & lat' < 42;
 indexlon = lon' > -71.54 & lon' < -70.34;
 lat = lat(indexlat);
@@ -86,11 +86,17 @@ if (ang>0)
 else
     fronty = round(tan(-ang*pi/180)*frontx)+1;
 end;
-% translat to lat/lon
-%flon = mylon(sub2ind(size(mylon),fronty,frontx));
+% translate to lat/lon
+flon = mylon(sub2ind(size(mylon),fronty,frontx));
 flat = mylat(sub2ind(size(mylat),fronty,frontx));
-flon = linspace(flon1,flon2,length(flat));
 
+%210 Degree Ray Spacing
+flon = linspace(flon1,flon2,length(flat));
+flat = fliplr(linspace(41.2576,41.2578,length(flon)));
+
+%180 Degree Ray Spacing
+%flon = linspace(flon1,flon2,length(flat));
+%flat = fliplr(linspace(41.2576,41.2578,length(flon)));
 % compute traveltime in seconds
 tt = msfm(cp/myRes,[fronty;frontx],true,true);
 
