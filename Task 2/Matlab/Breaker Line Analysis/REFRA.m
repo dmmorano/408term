@@ -11,5 +11,6 @@ function [ Kr ] = REFRA(bo,b)
 %        theta_o = water incident water angle. Will be 150, 180, or 210.
 
 Kr = sqrt(bo./b);
+
 end
 

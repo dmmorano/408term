@@ -1,5 +1,23 @@
-[lon, lat] = ginput(2);
+T = [10.2 9.58];
+HO = [4.16 3.67];
+ang = [150 180 210];
 
-londiff = lon(2) - lon(1);
-latdiff = lat(2) - lat(1);
-b = sqrt(londiff^2 + latdiff^2);
+
+[lon, lat] = ginput;
+
+b = [];
+refra = [];
+
+for n = 1:(length(lon) - 1)
+    londiff = lon(n + 1) - lon(n);
+    latdiff = lat(n + 1) - lat(n);
+    b(n) = sqrt(londiff^2 + latdiff^2);
+    
+    if n > 1
+        refra(n - 1) = REFRA(b(n + 1),b(n));
+    end    
+end
+
+%m estimated for entire beach region:
+m = 0.05;
+[H_breaker, h_breaker] = BREAK(T(1), ang(1), HO(1), m);
