@@ -47,7 +47,6 @@ wdvmn = M(:,13);
     wv = M(:,14);
     wsp = M(:,15);
     wdir = M(:,16);
-    DPTH = ones(size(ID)).*33;
     
 
 
@@ -100,7 +99,7 @@ if ((direction >=0) && (direction <= 360))
     wv = wv(DirIndexes);
     wsp = wsp(DirIndexes);
     wdir = wdir(DirIndexes);
-
+    DP
    
 end
 

@@ -1,5 +1,6 @@
 function extremeDist2_new(filename)
 
+close all;
 %e.g., filename = 'monthlyExtreme79.txt'
 
 %extremeDist2_new(filename)
@@ -35,14 +36,10 @@ Dt           = 1/12;       % time interval of monthy mx dat in years
 CLtresh      = 0.05;       % 1- alha = 95% confidence limit level     
 extremeMarks = [100 75 50 20 10 1 .1];  % Set of regular and extreme Tr values 
 
-M = dlmread(filename);
-wv = M(:,14);
-Hmo = M(:,9);
-ID = M(:,1);
-YEAR = M(:,2);
-dirmean =  mean(wv);
-DTp = M(:,10);
+[ID YEAR MM DD HH LONG LAT DPTH Hmo DTp Atp tmean wdvmn wv wsp wdir ]...
+ = textread(filename,'%f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f','headerlines',0);
 
+dirmean =  mean(wv)
 
 % initialize values
 %
@@ -53,24 +50,24 @@ Trm = Dt./(1 - Fm);      % Return period of x(m) in years
 % Hmo analyses
 % 
 Hmo       = sort(Hmo,'descend');   % sort Hmo array in descending order
-HmoMean   = mean(Hmo);              % Mean Hs
-HmoStdDev = std(Hmo);               % sigma Hs
+HmoMean   = mean(Hmo)              % Mean Hs
+HmoStdDev = std(Hmo)               % sigma Hs
 Tp        = 15.66.*sqrt((Hmo/g));  % Tp values for data based on FDS assumption
 
-Ath = 0.78*HmoStdDev;               % Theoretical Gumbel coefficient A 
-Bth = HmoMean - 0.45*HmoStdDev;     % Theoretical Gumbel coefficient B 
+Ath = 0.78*HmoStdDev               % Theoretical Gumbel coefficient A 
+Bth = HmoMean - 0.45*HmoStdDev     % Theoretical Gumbel coefficient B 
 
 % Gumbel linear curve fit and its confidence hyperbolas
 % 
 Pp       = -log(-log(Fm))';         % Gumbel transformation
 p        = polyfit(Pp,Hmo,1);
 Hmofit   = polyval(p,Pp);
-A        = p(1);
-B        = p(2);
+A        = p(1)
+B        = p(2)
 
 STC      = sum((Hmo - HmoMean).^2);
 SCR      = sum((Hmo - Hmofit).^2);
-R2       = 1 - SCR/STC;
+R2       = 1 - SCR/STC
 
 s2res    = SCR/(N-2);
 PpMean   = mean(Pp);                     
@@ -94,7 +91,7 @@ CLTp_down  = 15.66.*sqrt((CLHmo_down/g));
 
 % plot distributions of Hs
 
-figure()
+figure (1)
 hold on;
 plot(Pp,Hmo,'b.');  % Sample N
 plot(Fp,HmoTyrs,'k-')
@@ -123,7 +120,7 @@ hold off
 
 % plot distributions of Tp assuming FDS
 
-figure()
+figure (2)
 hold on;
 plot(Pp,Tp,'b.');  % Sample N
 plot(Fp,Tpyrs,'k-')
@@ -151,7 +148,7 @@ hold off
 
 % Compare FDS Tp to measured Tp
 
-figure()
+figure (3)
 hold on;
 plot(Tp,DTp,'b.');  % FDS vs. Sample N
 plot(Tp,Tp,'k-');   % 45 deg. best fit line

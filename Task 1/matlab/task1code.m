@@ -12,11 +12,12 @@
 %% Plot wave direction concentrations
 wavedir('ST63079.txt')
 
-%% Gumble Distrobution
-extremeDist2_new('ST63079.txt')
-
 %% Monthly Extrema
 
 for deg = [150 180 210]
-   monthextrema('ST63079.txt',deg,30)
+   monthextrema_new('ST63079.txt',deg,30)
 end
+
+%% Gumble Distrobution
+extremeDist2_new('monthlyExtreme63079_150.txt')
+
