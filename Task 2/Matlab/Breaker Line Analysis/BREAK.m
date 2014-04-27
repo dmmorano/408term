@@ -1,4 +1,4 @@
-function [ H_Breaker, h_breaker ] = BREAK(T, theta_o, Ho, m)
+function [ H_Breaker, h_breaker, Ks ] = BREAK(T, theta_o, Ho, m)
 %BREAK OMGWTFBBQ
 %   Input:
 %       T = wave period, sec.

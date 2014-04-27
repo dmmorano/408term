@@ -7,6 +7,7 @@ ang = [150 180 210];
 
 b = [];
 refra = [];
+shoaling = [];
 
 for n = 1:(length(lon) - 1)
     londiff = lon(n + 1) - lon(n);
@@ -19,5 +20,5 @@ for n = 1:(length(lon) - 1)
 end
 
 %m estimated for entire beach region:
-m = 0.05;
-[H_breaker, h_breaker] = BREAK(T(1), ang(1), HO(1), m);
+m = 1/50;
+[H_breaker, h_breaker, Ks] = BREAK(T(1), ang(1), HO(1), m);

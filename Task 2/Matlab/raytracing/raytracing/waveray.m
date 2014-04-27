@@ -1,4 +1,23 @@
-function [] = waveray(T,HO,ang,flon1, flon2)
+clear all;
+clc;
+
+T_150 = [12.59 13.33];
+T_180 = [13.06 13.77];
+T_210 = [12.86 13.87];
+HO_150 = [6.34 7.10];
+HO_180 = [6.83 7.59];
+HO_210 = [6.61 7.36];
+ang = [150 180 210];
+%lon = [0 0];
+%lat = [0 0];
+%[lon, lat] = ginput(2);
+
+T = T_150(2);
+HO = HO_150(2);
+ang = 150;
+
+
+%function [] = waveray(T,HO,ang,lat1, lat2, lon1, lon2)
 % path of fast marching library
 % download from http://www.mathworks.com/matlabcentral/fileexchange/24531-accurate-fast-marching
 % need to run compile_c_files.m in that directory before using
@@ -15,7 +34,7 @@ HO = HO; % waveheight
 ang = ang; % degrees CW from N
 
 % obtain grid
-myRes = 20; % resolution in meters
+myRes = 10; % resolution in meters
 myGrid = [-10 10 -5 20]*1e3; % grid size
 ProjectionOrigin = [41.32 -71.44 0]; % coordinates of origin
 
@@ -79,28 +98,35 @@ k = 2*pi./ldis(T,h);
 cp = sqrt(9.8./k.*tanh(k.*h));
 cg = (1+k.*h.*(1-tanh(k.*h).^2)./tanh(k.*h))/2.*cp;
 
-% specify points of initial wavefront
+%specify points of initial wavefront
 frontx = 1:size(h,2);
+frontxx = (size(h,2))/2:size(h,2);
 if (ang>0)
     fronty = round(tan(-ang*pi/180)*frontx)+excess;
+    frontyy = round(tan(-ang*pi/180)*frontxx)+excess;
+
 else
-    fronty = round(tan(-ang*pi/180)*frontx)+1;
+    frontyy = round(tan(-ang*pi/180)*frontxx)+1;
 end;
 % translate to lat/lon
-flon = mylon(sub2ind(size(mylon),fronty,frontx));
-flat = mylat(sub2ind(size(mylat),fronty,frontx));
+flon = mylon(sub2ind(size(mylon),frontyy,frontxx));
+flat = mylat(sub2ind(size(mylat),frontyy,frontxx));
 
-%210 Degree Ray Spacing
-%flon = linspace(flon1,flon2,length(flat));
-%flat = fliplr(linspace(41.2576,41.2578,length(flon)));
+% londiff = (lon2 - lon1).*tan(25*pi/180);
+% 
+% frontxx = find(flon > lon1 & flon < lon2);
+% frontyy = find(flat > lat1 & flat < londiff + lat1);
+% 
+% if length(frontyy) >= length(frontxx)
+%     frontyy = frontyy(1:length(frontxx));
+% else
+%     frontxx = frontxx(1:length(frontyy));
+% end
+% 
+% flon = mylon(frontxx);
+% flat = mylat(frontyy);
 
-%180 Degree Ray Spacing
-%flon = linspace(flon1,flon2,length(flat));
-%flat = fliplr(linspace(41.2576,41.2578,length(flon)));
 
-%150 Degree Ray Spacing
-%flon = linspace(flon1,flon2,length(flat));
-%flat = fliplr(linspace(41.3436,41.3519,length(flon)));
 
 % compute traveltime in seconds
 tt = msfm(cp/myRes,[fronty;frontx],true,true);
@@ -116,8 +142,8 @@ figure;
 % wave fronts
 contour(mylon,mylat,tt,0:1e2:5e3);
 % streamlines 
-h = streamline(mylon,mylat,cx,cy,flon(1:20:end),flat(1:20:end),[myRes 100000]);
-set(h,'Color','red');
+hb = streamline(mylon,mylat,cx,cy,flon(1:20:end),flat(1:20:end),[myRes 100000]);
+set(hb,'Color','red');
 % fix aspect ratio
 ylim = get(gca,'ylim');
 set(gca,'DataAspectRatio',[1 cos(mean(ylim)*pi/180) 1]);
@@ -135,4 +161,4 @@ ylabel('Latitude')
 % end
 
 
-end
+%end
