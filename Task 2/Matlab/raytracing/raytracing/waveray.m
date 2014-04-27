@@ -12,9 +12,9 @@ ang = [150 180 210];
 %lat = [0 0];
 %[lon, lat] = ginput(2);
 
-T = T_150(2);
-HO = HO_150(2);
-ang = 150;
+T = T_210(2);
+HO = HO_210(2);
+ang = 210;
 
 
 %function [] = waveray(T,HO,ang,lat1, lat2, lon1, lon2)
@@ -35,7 +35,7 @@ ang = ang; % degrees CW from N
 
 % obtain grid
 myRes = 10; % resolution in meters
-myGrid = [-10 10 -5 20]*1e3; % grid size
+myGrid = [-10 5 -5 15]*1e3; % grid size
 ProjectionOrigin = [41.32 -71.44 0]; % coordinates of origin
 
 % compute excess
@@ -100,7 +100,7 @@ cg = (1+k.*h.*(1-tanh(k.*h).^2)./tanh(k.*h))/2.*cp;
 
 %specify points of initial wavefront
 frontx = 1:size(h,2);
-frontxx = (size(h,2))/2:size(h,2);
+frontxx = round(size(h,2)*0.2):round(size(h,2)*0.37);
 if (ang>0)
     fronty = round(tan(-ang*pi/180)*frontx)+excess;
     frontyy = round(tan(-ang*pi/180)*frontxx)+excess;
