@@ -2,7 +2,30 @@
 Task 2 utilizes a wave ray tracing algorithm and local bathymetry information, provided for Narragansett Bay, in order to propagate storm waves determined from task 1. In order to complete this task, simulations are conducted for the 20 and 50 year storms along with creating rays that intersect along the shoreline of Narragansett Beach. For the 20 year storm simulations, use the ray spacing on the beach to calculate a refraction coefficient for each section of beach. Then, using bathymetry data from a chart near the beach, estimate the beach slope. This is used along with the deep water wave properties and refraction coefficient to estimate the shoaling coefficient, breaking depth, and breaker height. 
 \section{Hypotheses and Theories}
 
-The direction a wave travels in can be influenced by the sea floor in shallow water. Refraction occurs when one part of a waves moves more quickly than another part. As waves increase 
+When waves propagate over a non uniform sea floor, they refract depending on how the sea floor depth changes along the wavefront. As water depth decreases wave fronts can focus or de-focus along the coastline. Seen in \ref{eq:refrac_coeff}, the refraction coefficient can be determined with the distance between wave rays initially, and in the target location. A refraction coefficient less than one indicates de-focusing. 
+
+\begin{equation}
+K_{r} = \sqrt{\dfrac{b_{o}}{b}}
+\label{eq:refrac_coeff}
+\end{equation}
+
+In shallow water, waves slow down and experience an increase in wave height due to shoaling. The degree of wave refraction, and the shoaling coefficient dictate breaking wave height and water depth. Seen in \ref{eq:shoaling_coeff}, the ratio of phase speed and group celerity changes as water depth approaches the shallow water condition. With the deep water characteristics, and angle of incidence, breaker depth and wave height can be found iteratively.
+
+\begin{align}[H]
+c = c_{o} * \tanh(kh); \\
+c_{g} = \dfrac{c}{2} * \left(1 + \dfrac{2kh}{\sinh(2kh)}\right) \\
+K_{s} = \sqrt{c/2c_{g}}
+\label{eq:shoaling_coeff}
+\end{align}
+
+\begin{align}
+H_{b} = H_{o}K_{sb}K_{rb} = \kappa h_{b}
+\\ K_{sb} = F(L,h)
+\\K_{rb} = F(L,h,\theta_{o})
+\label{eq:breaker_char}
+\end{align}
+
+The programs supplied for the problem simulated waves propagating into the region of coastline surrounding Narragansett Beach. The programs required deep water wave characteristics, and latitude-longitude grid resolution. 
 
 \section{Solution of the Problem}
 
@@ -30,6 +53,30 @@ Seen below, the simulated wave rays from all three angles of incidence experienc
 \caption{Wave Ray 20y Expected Wave Parameters at 210 deg}
 \label{fig20y210deg}
 \end{figure}
+
+%\begin{figure}
+%\centering
+%\begin{minipage}{.33\textwidth}
+%  \centering
+%  \includegraphics[width=1.2\textwidth]{./img/20y_150deg.eps}
+%  \caption{20y, 150$^{\circ}$}
+%  \label{fig:20y150deg}
+%\end{minipage}%
+%\begin{minipage}{.33\textwidth}
+%  \centering
+%  \includegraphics[width=1\linewidth]{./img/20y_180deg.eps}
+%  \caption{20y, 180$^{\circ}$}
+%  \label{fig:20y180deg}
+%\end{minipage}
+%\begin{minipage}{.33\textwidth}
+%  \centering
+%  \includegraphics[width=1.2\linewidth]{./img/20y_210deg.eps}
+%  \caption{20y, 210$^{\circ}$}
+%  \label{fig:20y210deg}
+%\end{minipage}
+%\caption{20 Year Predicted Waves, H$_{o}$ = , T = }
+%\label{fig:20y}
+%\end{figure}
 
 Seen below, the simulated wave rays for the 50 year extreme waves were very similar to their 20 year counterparts. Narragansett Beach de-focused the few rays that hit the beach, and the degree of de-focusing can be observed to increase as the angle of incidence approached 210$^{\circ}$.
 

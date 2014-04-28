@@ -4,7 +4,7 @@
 \contentsline {section}{\numberline {4}Conclusion}{2}{section.4}
 \contentsline {section}{\numberline {5}Statement of Problem}{2}{section.5}
 \contentsline {section}{\numberline {6}Hypotheses and Theories}{2}{section.6}
-\contentsline {section}{\numberline {7}Solution of the Problem}{2}{section.7}
-\contentsline {section}{\numberline {8}Conclusion}{5}{section.8}
-\contentsline {section}{Appendices}{6}{section*.7}
-\contentsline {section}{\numberline {A}MATLAB Calculations}{6}{Appendix.a.A}
+\contentsline {section}{\numberline {7}Solution of the Problem}{3}{section.7}
+\contentsline {section}{\numberline {8}Conclusion}{6}{section.8}
+\contentsline {section}{Appendices}{7}{section*.7}
+\contentsline {section}{\numberline {A}MATLAB Calculations}{7}{Appendix.a.A}
