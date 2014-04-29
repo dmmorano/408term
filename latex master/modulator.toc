@@ -22,4 +22,7 @@
 \contentsline {section}{\numberline {8}Conclusion}{7}{section.8}
 \contentsline {section}{Appendices}{8}{section*.11}
 \contentsline {section}{\numberline {A}MATLAB Calculations}{8}{Appendix.a.A}
+<<<<<<< HEAD
+>>>>>>> FETCH_HEAD
+=======
 >>>>>>> FETCH_HEAD
