@@ -2,7 +2,7 @@
 Task 2 utilizes a wave ray tracing algorithm and local bathymetry information, provided for Narragansett Bay, in order to propagate storm waves determined from task 1. In order to complete this task, simulations are conducted for the 20 and 50 year storms along with creating rays that intersect along the shoreline of Narragansett Beach. For the 20 year storm simulations, use the ray spacing on the beach to calculate a refraction coefficient for each section of beach. Then, using bathymetry data from a chart near the beach, estimate the beach slope. This is used along with the deep water wave properties and refraction coefficient to estimate the shoaling coefficient, breaking depth, and breaker height. 
 \section{Hypotheses and Theories}
 
-When waves propagate over a non uniform sea floor, they refract depending on how the sea floor depth changes along the wavefront. As water depth decreases wave fronts can focus or de-focus along the coastline. Seen in \ref{eq:refrac_coeff}, the refraction coefficient can be determined with the distance between wave rays initially, and in the target location. A refraction coefficient less than one indicates de-focusing. 
+When waves propagate over a non uniform sea floor, some parts of the wave travel faster than others. The parts of the wavefront that propagate more quickly shift the overall direction of the front. Depending on the local bathymetry, wavefronts can become focused or de-focused as they approach the shoreline. Seen in \ref{eq:refrac_coeff}, the refraction coefficient can be determined by observing the distance between two wave rays propagating through a region.
 
 \begin{equation}
 K_{r} = \sqrt{\dfrac{b_{o}}{b}}
@@ -11,7 +11,7 @@ K_{r} = \sqrt{\dfrac{b_{o}}{b}}
 
 In shallow water, waves slow down and experience an increase in wave height due to shoaling. The degree of wave refraction, and the shoaling coefficient dictate breaking wave height and water depth. Seen in \ref{eq:shoaling_coeff}, the ratio of phase speed and group celerity changes as water depth approaches the shallow water condition. With the deep water characteristics, and angle of incidence, breaker depth and wave height can be found iteratively.
 
-\begin{align}[H]
+\begin{align}
 c = c_{o} * \tanh(kh); \\
 c_{g} = \dfrac{c}{2} * \left(1 + \dfrac{2kh}{\sinh(2kh)}\right) \\
 K_{s} = \sqrt{c/2c_{g}}
@@ -29,9 +29,9 @@ The programs supplied for the problem simulated waves propagating into the regio
 
 \section{Solution of the Problem}
 
-Using the supplied C functions and waveray.m, wave rays were propagated into Narragansett Beach under the conditions determined in Task 1. Twenty and fifty year predicted wave parameters were used to simulate the path lines extreme waves followed. Seen in CITE WAVEDIR FIGURE HERE, three predominant angles of incidence were determined from the supplied data. Waveray.m  was non-intuitive, and didn't allow for significant manipulation of the rendered area without ruining the data. A consequence of this was that our breaking wave characteristics were evaluated manually, and were not based off the simulation data.
+Using the supplied C functions and waveray.m, wave rays were propagated into Narragansett Beach under the conditions determined in Task 1. Twenty and fifty year predicted wave parameters were used to simulate the path lines extreme waves followed. Seen in CITE WAVEDIR FIGURE HERE, three predominant angles of incidence were determined from the supplied data. Waveray.m  was non-intuitive, and didn't allow for manipulation of the rendered area without disrupting the ray simulation. As a result, most of the renders did not intersect Narragansett Beach with more than two or three rays.
 
-Seen below, the simulated wave rays from all three angles of incidence experienced de-focusing as they approached the beach. Significant focusing can be observed in \ref{fig20y210deg} further south on the shoreline. 
+The 20 year predicted wave conditions were simulated at for each of the three predominant angles of incidence. De-focusing was observed in each simulation, and was most extreme in \ref{fig20y210deg}. Figures \ref{fig:20y150deg} and \ref{fig:20y180deg} indicated a large degree of local de-focusing in the bathymetry of Narragansett Beach. Wave rays can be seen spreading out as they approached the shoreline.
 
 \begin{figure}[H]
 \centering
@@ -40,26 +40,12 @@ Seen below, the simulated wave rays from all three angles of incidence experienc
 \label{fig:20y150deg}
 \end{figure}
 
-\begin{table}[H]
-\centering
-\input{./img/20y_150deg.tex}
-\caption{Breaking Wave Characteristics for 20 Year extreme wave at 180$^{\circ}$ angle of incidence}
-\label{tab:20y_150deg}
-\end{table}
-
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.6\textwidth]{./img/20y_180deg.pdf}
 \caption{20y Predicted Wave Rays at 180$^{\circ}$ angle of incidence}
 \label{fig:20y180deg}
 \end{figure}
-
-\begin{table}[H]
-\centering
-\input{./img/20y_180deg.tex}
-\caption{Breaking Wave Characteristics for 20 Year extreme wave at 180$^{\circ}$}
-\label{tab:20y_180deg}
-\end{table}
 
 \begin{figure}[H]
 \centering
@@ -92,7 +78,7 @@ Seen below, the simulated wave rays from all three angles of incidence experienc
 %\label{fig:20y}
 %\end{figure}
 
-Seen below, the simulated wave rays for the 50 year extreme waves were very similar to their 20 year counterparts. Narragansett Beach de-focused the few rays that hit the beach, and the degree of de-focusing can be observed to increase as the angle of incidence approached 210$^{\circ}$.
+Seen below, the simulated wave rays for the 50 year predicted conditions were very similar to their 20 year counterparts. The bathymetry of Narragansett Beach caused most of the wave rays to de-focus as they propagated into the coastline. Figures \ref{fig:50y150deg} and \ref{fig:50y180deg} supported the simulations run for the 20 year predicted wave characteristics. The wave rays de-focused as they approached the coastline. Similarly, \ref{fig:50y210deg} confirmed that large amounts of de-focusing occurred before the wave fronts got close to Narragansett Beach. 
 
 \begin{figure}[H]
 \centering
@@ -101,26 +87,12 @@ Seen below, the simulated wave rays for the 50 year extreme waves were very simi
 \label{fig:50y150deg}
 \end{figure}
 
-\begin{table}[H]
-\centering
-\input{./img/50y_150deg.tex}
-\caption{Breaking Wave Characteristics for 50 Year extreme wave at 150$^{\circ}$ angle of incidence}
-\label{tab:50y_150deg}
-\end{table}
-
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.6\textwidth]{./img/50y_180deg.pdf}
 \caption{50y Predicted Wave Rays at 180$^{\circ}$ angle of incidence}
 \label{fig:50y180deg}
 \end{figure}
-
-\begin{table}[H]
-\centering
-\input{./img/50y_180deg.tex}
-\caption{Breaking Wave Characteristics for 50 Year extreme wave at 180$^{\circ}$ angle of incidence}
-\label{tab:50y_180deg}
-\end{table}
 
 \begin{figure}[H]
 \centering
@@ -129,8 +101,37 @@ Seen below, the simulated wave rays for the 50 year extreme waves were very simi
 \label{fig:50y210deg}
 \end{figure}
 
+The predicted breaking wave characteristics were not accurate. The calculated shoaling coefficients were extremely small, and indicated that the breaking wave characteristics were not evaluated properly. Due to the nature of the program, it was difficult to render wave rays across short regions. As such, the resolutions required to fully map the beach were not achieved. It was not possible to evaluate the characteristics of the 210$^{\circ}$ angle of incidence wave fronts. Seen in \ref{fig20y210deg} and \ref{fig:50y210deg} the rays that propagated close to the beach de-shoaled significantly before they got to the coastline. 
+
+\begin{table}[H]
+\centering
+\input{./img/20y_150deg.tex}
+\caption{Breaking Wave Characteristics for 20 Year extreme wave at 150$^{\circ}$ angle of incidence}
+\label{tab:20y_150deg}
+\end{table}
+
+\begin{table}[H]
+\centering
+\input{./img/20y_180deg.tex}
+\caption{Breaking Wave Characteristics for 20 Year extreme wave at 180$^{\circ}$ angle of incidence}
+\label{tab:20y_180deg}
+\end{table}
+
+\begin{table}[H]
+\centering
+\input{./img/50y_150deg.tex}
+\caption{Breaking Wave Characteristics for 50 Year extreme wave at 150$^{\circ}$ angle of incidence}
+\label{tab:50y_150deg}
+\end{table}
+
+\begin{table}[H]
+\centering
+\input{./img/50y_180deg.tex}
+\caption{Breaking Wave Characteristics for 50 Year extreme wave at 180$^{\circ}$ angle of incidence}
+\label{tab:50y_180deg}
+\end{table}
+
 %Talkin bout sediment transport
-Sediment transport 
 
 %Talkin bout wave energy facility and location importance and such
 
