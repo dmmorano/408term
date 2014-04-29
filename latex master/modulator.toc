@@ -20,3 +20,5 @@
 \contentsline {chapter}{\numberline {B}Task 1 Appendicies}{21}{Appendix.a.B}
 \contentsline {section}{\numberline {B.1}Monthly Maximum output example}{21}{section.a.B.1}
 \contentsline {section}{\numberline {B.2}Yearly Average Wave Conditions}{22}{section.a.B.2}
+\contentsline {chapter}{\numberline {C}Task 2 Appendices}{23}{Appendix.a.C}
+\contentsline {section}{\numberline {C.1}50 Year Wave Ray Simulations}{24}{section.a.C.1}

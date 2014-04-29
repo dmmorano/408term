@@ -1,0 +1,214 @@
+
+%Ultimate Formal Report Template 		Author: Dylan Morano ©
+%
+%Feel free to edit and redistribute 
+%
+%-------------------------------Document Information-------------------------------%
+
+\newcommand{\Report}		{OCE-408 Final Project}			%Report Name
+\newcommand{\Author}		{Dylan Morano, Rebecca Cressman, Arielle De Souza, Scott Hara}		%Author
+\newcommand{\Last}		{Morano, Cressman, De Souza, Hara}				%Authors Last Name
+\newcommand{\Class}		{OCE-311}			%Class Title
+\newcommand{\Professor}	{Jason Dahl}			%Professor(s)
+
+%----------------------------------------Preamble---------------------------------------%
+
+\documentclass[10pt,letterpaper,titlepage]{report}
+\usepackage[toc,page]{appendix}	%appendix support
+\usepackage{fixltx2e}	%official latex patch and fixes
+%\usepackage[latin1]{inputenc} 	%accepts different input encodings
+\usepackage{pdflscape}	%landscape support
+\usepackage{multicol}	%multicolumn support
+\usepackage{setspace}	%set line spaceing (double single half)
+\usepackage{geometry}	%change page geometry (margins)
+\usepackage{datetime}	%automatic date/time insertion
+\usepackage{fancyhdr}	%fancy headers
+\usepackage{titlesec}	%Select alternative section titles
+\usepackage{hyperref}	%support hypertext referencing
+\usepackage{paralist} 	%enumerate and itemize within paragraphs
+\usepackage{tabu}		%flexible latex tabulars
+\usepackage{amsmath}	%facilitates math formulas and equations
+\usepackage{amsfonts}	%math fonts and symbols
+\usepackage{amssymb}	%more symbols
+\usepackage{graphicx}	%enhanced support for graphics
+\usepackage{subfigure}	%multiple figure containment
+\usepackage{caption}	%figure captions
+\usepackage{float}		%float figures within text
+\usepackage{epstopdf}	%.EPS file support
+% \usepackage{subfig}		%subfigures
+% \usepackage{subcaption}	%subcaptions
+\usepackage{listings}	%code and listing input
+\usepackage{mcode} 	%MATLAB code parsing mcode.sty required in working directory
+\usepackage{color} 		%custom color packaging
+\usepackage{apacite}	%citing APA format
+
+%	Define margins
+\geometry{top = 1.0in, bottom = 1.0in, left = 1.0in, right = 1.0in}
+
+%	Double spacing
+\doublespacing
+
+%	\Hide command for hiding section tidles
+\newcommand*\Hide{
+\titleformat{\chapter}[display]
+  {}{}{0pt}{\bf \Huge}
+\titleformat{\part}
+  {}{}{0pt}{}
+}
+
+%	Define colors for matlab insertion
+\definecolor{mygreen}{RGB}{28,172,0}  
+\definecolor{mylilas}{RGB}{170,55,241}
+
+%	define default path to graphic files
+\graphicspath{ ../figures}
+
+
+%	Declare types of images
+\DeclareGraphicsExtensions{.pdf,.png,.jpg,.eps}
+
+
+%------------------------------------------------------Begin Document------------------------------------------------------%
+
+\begin{document}
+
+\title{\Report}
+\date{\today}
+\author{\Author \\ \Class \\ \Professor}	
+
+\pagenumbering{arabic}
+\rhead{\Last}
+\lhead{\Report}
+\pagestyle{fancy}
+
+%	print titlepage
+\maketitle
+
+%	print Abstract
+% \section*{Abstract}
+% \newpage
+
+%	print table of contents
+\tableofcontents
+
+%	print lists of content
+\listoffigures
+%\listoftables
+%\listofequations
+
+%--------------------------------Begin Sections--------------------------------%
+\newpage
+\Hide
+\chapter{Introduction}
+
+Narragansett Town Beach is an important economic resource to the town of Narragansett, providing an average net income of $\$$270,000 each season and increasing seasonal business for surrounding restaurants, shops, and rentals. It is important to understand the natural forces which contribute to beach erosion for expensive re-nourishment project in order to keep the beach healthy for vacationers. In order to understand these processes, a study was conducted utilizing data from the Wave Informations Studies (WIS) program. 20, and 50 year return storm waves projected towards the beach were analyzed in order to determine incident wave rays and breaking characteristics. This information can then be used in order to determine the littoral processes present at Narragansett Beach. 
+\chapter{Task 1}
+
+\input{"../Task 1/latex/T1.tex"}
+
+\newpage
+\Hide
+\chapter{Task 2}
+
+\input{"../Task 2/latex/T2.tex"}
+
+%--------------------------------Begin References--------------------------------%
+
+%	BibTex Creator: truben.no/latex/bibtex 
+
+\newpage
+\nocite{*}
+\def\bibindent{1em}
+\begin{thebibliography}{1\kern\bibindent}
+\makeatletter
+\let\old@biblabel\@biblabel
+\def\@biblabel#1{\old@biblabel{#1}\kern\bibindent}
+\let\old@bibitem\bibitem
+\def\bibitem#1{\old@bibitem{#1}\leavevmode\kern-\bibindent}
+\makeatother
+
+\bibitem{CEM}
+US Army Corps of Engineers (2002). 
+$\emph{Coastal Engineering Manual}$
+
+\bibitem{WIS}
+US Army Corps of Engineers (2002). 
+$\emph{Wave Information Studies Program}$ \\
+\url{http://wis.usace.army.mil/}
+
+\bibitem{WIS}
+NOAA (2014). 
+$\emph{Narragansett bay including newport harbor chart: 13223.}$ \\
+\url{http://www.charts.noaa.gov/OnLineViewer/13223.shtml}
+
+\end{thebibliography}
+
+%--------------------------------Begin Appendix--------------------------------%
+
+\begin{appendices}
+
+\chapter{MATLAB Calculations}
+
+%	Matlab code parser block
+%-----------------------------------------------------------------
+% Must have before any Matlab code
+
+\lstset{language=Matlab, %basicstyle=\color{red},
+    breaklines=true, caption={},%
+    morekeywords={matlab2tikz},
+    basicstyle=\tiny,
+    numberstyle=\tiny,
+    keywordstyle=\color{blue},%
+    morekeywords=[2]{1}, keywordstyle=[2]{\color{black}},
+    identifierstyle=\color{black},%
+    stringstyle=\color{mylilas},
+    commentstyle=\color{mygreen},%
+    showstringspaces=false,%without this there will be a symbol in the places where there is a space
+    numbers=left,%
+    numberstyle={\tiny \color{black}},% size of the numbers
+    numbersep=9pt, % this defines how far the numbers are from the text
+    emph=[1]{for,end,break},emphstyle=[1]\color{red}, %some words to emphasise
+    emph=[2]{word1,word2}, emphstyle=[2]{style},
+    captionpos=b,					% sets the caption-position to bottom
+}
+%-----------------------------------------------------------------
+\section{Parser Function}
+\lstinputlisting{../"Task 1"/matlab/parser.m}
+\section{Task 1 Script}
+\lstinputlisting{../"Task 1"/matlab/task1code.m}
+\section{Task 2 Waveray Script}
+\lstinputlisting{../"Task 2"/matlab/"raytracing"/task2_waveray.m}
+\section{Task 2 Breaker Script}
+\lstinputlisting{../"Task 2"/matlab/"Breaker Line Analysis"/LATLONDIST.m}
+
+\chapter{Task 1 Appendicies}
+
+\section{Monthly Maximum output example}
+\lstinputlisting[caption = Example output from monethextrema\_new.m, label = lst:example150, firstline = 1, lastline = 5] {../"Task 1"/matlab/monthlyExtreme63079_150.txt}
+
+\section{Yearly Average Wave Conditions}
+
+\begin{minipage}{0.36\textwidth}
+\begin{table}[H]
+	\input{tables/yearly150.tex}
+	\label{yearly150}
+	\caption{150$^\circ$ Yearly Averages}
+\end{table}
+\end{minipage}
+\begin{minipage}{0.36\textwidth}
+\begin{table}[H]
+	\input{tables/yearly180.tex}
+	\label{yearly180}
+	\caption{180$^\circ$ Yearly Averages}
+\end{table}
+\end{minipage}
+\begin{minipage}{0.36\textwidth}
+\begin{table}[H]
+	\input{tables/yearly210.tex}
+	\label{yearly210}
+	\caption{210$^\circ$ Yearly Averages}
+\end{table}
+\end{minipage}
+
+\end{appendices}
+\end{document}
