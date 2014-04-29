@@ -1,8 +1,10 @@
 \section{Statement of Problem}
-Task 2 utilizes a wave ray tracing algorithm and local bathymetry information, provided for Narragansett Bay, in order to propagate storm waves determined from task 1. In order to complete this task, simulations are conducted for the 20 and 50 year storms along with creating rays that intersect along the shoreline of Narragansett Beach. For the 20 year storm simulations, use the ray spacing on the beach to calculate a refraction coefficient for each section of beach. Then, using bathymetry data from a chart near the beach, estimate the beach slope. This is used along with the deep water wave properties and refraction coefficient to estimate the shoaling coefficient, breaking depth, and breaker height. 
+Utilize wave ray tracing and local bathymetry information, provided for Narragansett Bay, to propagate storm waves using parameters found in Task 1. Conduct simulations for the 20 and 50 year storms, and generate wave rays that intersect the shoreline of Narragansett Beach. Use the ray spacing on the beach to calculate a refraction coefficient for each section of beach. Then, using bathymetry data from a chart near the beach, estimate the beach slope. This is used along with the deep water wave properties and refraction coefficient to estimate the shoaling coefficient, breaking depth, and breaker height. 
+
+
 \section{Hypotheses and Theories}
 
-When waves propagate over a non uniform sea floor, they refract depending on how the sea floor depth changes along the wavefront. As water depth decreases wave fronts can focus or de-focus along the coastline. Seen in \ref{eq:refrac_coeff}, the refraction coefficient can be determined with the distance between wave rays initially, and in the target location. A refraction coefficient less than one indicates de-focusing. 
+When waves propagate over a non uniform sea floor, they refract depending on how the sea floor depth changes along the wavefront. As water depth decreases wave fronts can focus or de-focus along the coastline. Seen in \ref{eq:refrac_coeff}, the refraction coefficient can be determined with the distance between wave rays initially, and in the target location. A refraction coefficient less than one indicates de-focusing.
 
 \begin{equation}
 K_{r} = \sqrt{\dfrac{b_{o}}{b}}
@@ -25,11 +27,11 @@ H_{b} = H_{o}K_{sb}K_{rb} = \kappa h_{b}
 \label{eq:breaker_char}
 \end{align}
 
-The programs supplied for the problem simulated waves propagating into the region of coastline surrounding Narragansett Beach. The programs required deep water wave characteristics, and latitude-longitude grid resolution. 
+The programs supplied for the problem simulate waves propagating into a region of supplied bathymetry information. Waveray.m utilized an overlay of latitude and longitude coordinates on bathymetric data. Water depths along each wave ray were evaluated, and the path-line that each ray followed was calculated using the Fast Marching Method.
 
 \section{Solution of the Problem}
 
-Using the supplied C functions and waveray.m, wave rays were simulated propagating into Narragansett Beach under the conditions determined in Task 1. Twenty and fifty year predicted wave parameters were used to simulate the path lines extreme waves followed. Seen in Figure 1.2, three predominant angles of incidence were determined from the supplied data. Waveray.m didn't allow for significant manipulation of the rendered area without ruining the data. None of the simulations intersected the coastline with more than two or three renders.
+Using the supplied C functions and waveray.m, wave rays were simulated propagated into Narragansett Beach under the conditions determined in Task 1. Twenty and fifty year predicted wave parameters were used to simulate the path lines extreme waves followed. Seen in Figure 1.2, three predominant angles of incidence were determined from the supplied data. Waveray.m didn't allow for significant manipulation of the rendered area without ruining the data. None of the simulations intersected the coastline with more than two or three renders.
 
 Seen below, the wave rays in all three simulations indicated that wavefronts de-focus slightly as they propagate into the bay. Figure \ref{fig:20y150deg} displayed a low degree of focusing or de-focusing along the shoreline. Waves propagating at that angle of incidence didn't experience a large reduction in wave energy before they hit the beach. Figures \ref{fig:20y180deg} and \ref{fig:20y210deg} displayed significant de-focusing as they approached the coastline. Waves that impacted the beach from those angles of incidence did so at a lower energy. The 50 year wave ray simulations can be observed in the Appendix. The simulated rays displayed identical wave propagation patterns at each angle of incidence when compared to the 20 year simulations.
 
@@ -39,7 +41,6 @@ Seen below, the wave rays in all three simulations indicated that wavefronts de-
 \caption{20y Predicted Wave Rays at 150$^{\circ}$ angle of incidence}
 \label{fig:20y150deg}
 \end{figure}
-
 
 \begin{figure}[H]
 \centering
@@ -55,7 +56,14 @@ Seen below, the wave rays in all three simulations indicated that wavefronts de-
 \label{fig:20y210deg}
 \end{figure}
 
-Seen below, breaking wave characteristics were estimated using the simulated wave rays. The low number of data points impacted the breaking wave analysis by reducing its accuracy significantly. No calculations were possible for the 20 and 50 year wave ray simulations at a 210$^{\circ}$ because they did not have any rays intersecting the beach. The values that could be calculated for the remaining simulations were incorrect. Tables \ref{tab:20y_150deg} and \ref{tab:50y_150deg} indicated that the breaking wave characteristics were scaling properly with more extreme initial wave conditions.
+Seen below, breaking wave characteristics were estimated using the simulated wave rays. The local slope of the beach was estimated to be 1/50 in the near shore region. The low number of data points impacted the breaking wave analysis by reducing its accuracy significantly. No calculations were possible for the 20 and 50 year wave ray simulations at a 210$^{\circ}$ because they did not have any rays intersecting the beach. Seen in \ref{fig:20y_breaker}, one data point for each wave ray was taken, and the breaking wave characteristics were evaluated based on the location. The estimated locations were not accurate seen in Tables \ref{tab:20y_150deg}, \ref{tab:20y_180deg}, \ref{tab:50y_150deg}, and \ref{tab:50y_180deg}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.5\textwidth]{./img/breaks150.png}
+\caption{20y, 150$^{\circ}$ Breaking Wave Predicted Location}
+\label{fig:20y_breaker}
+\end{figure}
 
 \begin{table}[H]
 \centering
@@ -85,22 +93,21 @@ Seen below, breaking wave characteristics were estimated using the simulated wav
 \label{tab:50y_180deg}
 \end{table}
 
-
+\section{Discussion}
 %Talkin bout sediment transport
-Sediment transport 
+The results of this study would prove very useful for the estimation of sediment transport at Narragansett Beach. The wave ray analysis provides good incite as to the interaction waves may have with the beach. Areas of high wave activity can be easily spotted with the high resolution wave ray analysis used in this study. The direction of incident wave fronts can also be determined. However, in able to do a proper sediment transport analysis for this beach, further information would be necessary. In order to determine the extent to which the ocean interacts with the beach, wave energy analysis would need to be conducted. The properties of the sediment present at Narragansett Beach would also need to be investigated in order to produce an accurate model.
 
 %Talkin bout wave energy facility and location importance and such
 Placement of a wave energy facility within Narragansett Bay can be determined with the help of the data analysis used for this project. Just as it was used here, hind casting can determine yearly wave characteristics, and major angles of incidence. Wave ray simulations can identify regions of wave focusing within the bay. However, the data used in this project would not be suitable for use in evaluating average conditions of the bay. The supplied 20 and 50 year predictions were based off of the extreme conditions from each sample range. An energy spectra of waves in the region would be required instead of a Gumbel distribution. Average wave parameters can be found using the energy spectra, providing more reasonable characteristics for simulation.
 
 
 %Talkin bout inclusion of diffraction model
-Diffraction modeling would have influenced our 210$^{\circ}$ angle of incidence waves. Bloc
+In terms of the specific wave directions determined from task 1, the inclusion of diffraction models would alter the direction of the wave rays in the ray tracing analysis.Wave diffraction involves a change in direction of waves as they pass through an opening or around a barrier in their path. The amount of diffraction (the sharpness of the bending) increases with increasing wavelength and decreases with decreasing wavelength. As waves propagate in the wave directions determined from task 1, the wave from one direction might travel a different distance than the wave from another direction. When the difference in distance is significant, the waves from each direction might be in a different phase. Therefore the waves would look more realistic and accurate.
+
 
 \section{Conclusion}
-After manually evaluating the breaking wave characteristics, it indicated that the simulated wave rays would experience de-focusing. From the data in task 1, the simulated wave rays for the 50 year extreme showed similarity to their 20 year counterparts. Narragansett Beach also de-focused the rays that hit the beach. The degree of de-focusing can be observed to increase as the angle of incidence approaches 210$^{\circ}$ . Overall, using the supplied functions given, the wave ray analysis on Narragansett Beach under the conditions determined in task 1 proved that the simulated wave rays experienced de-focusing. 
+From the data in task 1, the simulated wave rays for the 20 and 50 year extreme wave conditions exhibited similar focusing and de-focusing trends as they propagated towards the coastline. The degree of de-focusing can be observed to increase as the angle of incidence approached 210$^{\circ}$. Evaluating the breaking wave conditions along the rays that intersected Narragansett Beach resulted in 
 
 
 
 %Question 3
-%In terms of the specific wave directions determined from task 1, the inclusion of diffraction models would alter the direction of the wave rays in the ray tracing analysis.Wave diffraction involves a change in direction of waves as they pass through an opening or around a barrier in their path. The amount of diffraction (the sharpness of the bending) increases with increasing wavelength and decreases with decreasing wavelength. As waves propagate in the wave directions determined from task 1, the wave from one direction might travel a different distance than the wave from another direction. When the difference in distance is a significant difference, the waves from each direction might be in a different phase. Therefore the waves would look more realistic and accurate.
-
