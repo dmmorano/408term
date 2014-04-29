@@ -111,15 +111,38 @@ Narragansett Town Beach is an important economic resource to the town of Narraga
 \chapter{Task 2}
 
 \input{"../Task 2/latex/T2.tex"}
+
 %--------------------------------Begin References--------------------------------%
 
 %	BibTex Creator: truben.no/latex/bibtex 
 
 \newpage
 \nocite{*}
-\bibliographystyle{apacite}
-\bibliography{modular}{bibliography}
-\nocite{*}
+\def\bibindent{1em}
+\begin{thebibliography}{1\kern\bibindent}
+\makeatletter
+\let\old@biblabel\@biblabel
+\def\@biblabel#1{\old@biblabel{#1}\kern\bibindent}
+\let\old@bibitem\bibitem
+\def\bibitem#1{\old@bibitem{#1}\leavevmode\kern-\bibindent}
+\makeatother
+
+\bibitem{CEM}
+US Army Coprs of Engineers (2002). 
+$\emph{Coastal Engineering Manual}$
+
+\bibitem{WIS}
+US Army Coprs of Engineers (2002). 
+$\emph{Wave Information Studies Program}$ \\
+\url{http://wis.usace.army.mil/}
+
+\bibitem{WIS}
+NOAA (2014). 
+$\emph{Narragansett bay including newport harbor chart: 13223.}$ \\
+\url{http://www.charts.noaa.gov/OnLineViewer/13223.shtml}
+
+\end{thebibliography}
+
 %--------------------------------Begin Appendix--------------------------------%
 
 \begin{appendices}
