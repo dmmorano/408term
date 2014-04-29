@@ -1,5 +1,4 @@
-function extremeDist2_new(filename)
-
+function tableout = extremeDist2_new(filename)
 close all;
 %e.g., filename = 'monthlyExtreme79.txt'
 
@@ -93,7 +92,7 @@ CLTp_down  = 15.66.*sqrt((CLHmo_down/g));
 
 figure (1)
 hold on;
-plot(Pp,Hmo,'b.');  % Sample N
+plot(Pp,Hmo,'b.','linewidth',3);  % Sample N
 plot(Fp,HmoTyrs,'k-')
 plot(Fp,CLHmo_up,'k-.')
 plot(Fp,CLHmo_down,'k-.')
@@ -104,7 +103,7 @@ extremeMarks = [100 75 50 20 10 1 .1];
 exceedFreq   = 1 - Dt./extremeMarks;
 exceedFreqp  = -log(-log(exceedFreq));
 set(gca,'xtick',sort(exceedFreqp));
-set(gca,'xticklabel',sort(extremeMarks),'FontSize',16);
+set(gca,'xticklabel',sort(extremeMarks),'FontSize',24);
  
 grid on;
 axis tight;
@@ -113,9 +112,9 @@ degrees = filename(size(filename,2)-6:size(filename,2)-4);
 str = {['WIS Station: ' int2str(ID(1))...
     ', Years: ' int2str(YEAR(1)) '-' int2str(YEAR(length(YEAR)))...
     ', Dirm.: ' int2str(dirmean)]};
-title(str,'FontSize',16);
-xlabel('{\it T_r }(y)','FontSize',16);
-ylabel('{\it H_s }(m)','FontSize',16);
+title(str,'FontSize',24);
+xlabel('{\it T_r }(y)','FontSize',24);
+ylabel('{\it H_s }(m)','FontSize',24);
 hold off
 
 % plot distributions of Tp assuming FDS
@@ -132,7 +131,7 @@ legend('Data','Gumbel fit','95% CL',4);
 exceedFreq   = 1 - Dt./extremeMarks;
 exceedFreqp  = -log(-log(exceedFreq));
 set(gca,'xtick',sort(exceedFreqp));
-set(gca,'xticklabel',sort(extremeMarks),'FontSize',16);
+set(gca,'xticklabel',sort(extremeMarks),'FontSize',24);
  
 grid on;
 axis tight;
@@ -141,9 +140,9 @@ degrees = filename(size(filename,2)-6:size(filename,2)-4);
 str = {['WIS Station: ' int2str(ID(1))...
     ', Years: ' int2str(YEAR(1)) '-' int2str(YEAR(length(YEAR)))...
     ', Dirm.: ' int2str(dirmean)]};
-title(str,'FontSize',16);
-xlabel('{\it T_r }(y)','FontSize',16);
-ylabel('{\it T_p }(s)','FontSize',16);
+title(str,'FontSize',24);
+xlabel('{\it T_r }(y)','FontSize',24);
+ylabel('{\it T_p }(s)','FontSize',24);
 hold off
 
 % Compare FDS Tp to measured Tp
@@ -158,9 +157,9 @@ degrees = filename(size(filename,2)-6:size(filename,2)-4);
 str = {['WIS Station: ' int2str(ID(1))...
     ', Years: ' int2str(YEAR(1)) '-' int2str(YEAR(length(YEAR)))...
     ', Dirm.: ' int2str(dirmean)]};
-title(str,'FontSize',16);
-xlabel('{\it T_p (FDS) }(s)','FontSize',16);
-ylabel('{\it T_p (obs.)}(s)','FontSize',16);
+title(str,'FontSize',24);
+xlabel('{\it T_p (FDS) }(s)','FontSize',24);
+ylabel('{\it T_p (obs.)}(s)','FontSize',24);
 axis equal;
 
 % Calculate extreme values and write out results
@@ -178,5 +177,6 @@ outs = 'Tr (y) Hs (m)   Tp (s)   CL95 Hs (m) CL95 Tp (s)';
 fprintf(1,'%s\r',outs)
 for k = 1:4
     out = [extremeMarks(k) Hmoext(k) Tpext(k) CLHmo_upext(k) CLTp_upext(k)];
+    tableout(k,:) = out;
     fprintf(1,'%4.0f %9.5f %9.5f %9.5f %9.5f\r',out);
 end 

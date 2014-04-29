@@ -19,5 +19,6 @@ for deg = [150 180 210]
 end
 
 %% Gumble Distrobution
-extremeDist2_new('monthlyExtreme63079_210.txt')
+tableout = extremeDist2_new('monthlyExtreme63079_210.txt')
+tableizer(tableout,'name','extrema210.tex')
 

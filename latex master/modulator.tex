@@ -13,7 +13,7 @@
 
 %----------------------------------------Preamble---------------------------------------%
 
-\documentclass[10pt,letterpaper,titlepage]{article}
+\documentclass[10pt,letterpaper,titlepage]{report}
 \usepackage[toc,page]{appendix}	%appendix support
 \usepackage{fixltx2e}	%official latex patch and fixes
 %\usepackage[latin1]{inputenc} 	%accepts different input encodings
@@ -35,6 +35,8 @@
 \usepackage{caption}	%figure captions
 \usepackage{float}		%float figures within text
 \usepackage{epstopdf}	%.EPS file support
+% \usepackage{subfig}		%subfigures
+% \usepackage{subcaption}	%subcaptions
 \usepackage{listings}	%code and listing input
 \usepackage{mcode} 	%MATLAB code parsing mcode.sty required in working directory
 \usepackage{color} 		%custom color packaging
@@ -96,10 +98,15 @@
 
 %--------------------------------Begin Sections--------------------------------%
 \newpage
+\Hide
 \chapter{Task 1}
+
 \input{"../Task 1/latex/T1.tex"}
 
+\newpage
+\Hide
 \chapter{Task 2}
+
 \input{"../Task 2/latex/T2.tex"}
 %--------------------------------Begin References--------------------------------%
 
