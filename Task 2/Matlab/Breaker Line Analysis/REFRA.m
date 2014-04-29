@@ -10,7 +10,7 @@ function [ Kr ] = REFRA(bo,b)
 %        b = wave ray width at location of Kr evaluation
 %        theta_o = water incident water angle. Will be 150, 180, or 210.
 
-Kr = sqrt(bo./b);
+Kr = sqrt(b./bo);
 
 end
 

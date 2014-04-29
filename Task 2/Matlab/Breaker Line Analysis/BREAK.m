@@ -1,4 +1,4 @@
-function [ H_Breaker, h_breaker, Ks ] = BREAK(T, theta_o, Ho, m)
+function [ H_Breaker, h_breaker, Ks ] = BREAK(T, theta_o, Ho, m, bo, b)
 %BREAK OMGWTFBBQ
 %   Input:
 %       T = wave period, sec.
@@ -19,12 +19,12 @@ a = 43.8*(1 - exp(-19*m));
 b = 1.56*(1 + exp(-19.5*m))^-1;
 %Iterating to solve for breaker depth, wave height, distance from shore
       while ((abs(Err) > EPS) & (ITER <= ITERM))
-        hb = (g^(1/5)./kappa_s^(4/5))*((Ho.^2)./(2*omega)).^(2/5);
+        hb = (g^(1/5)./kappa_s^(4/5)).*((Ho.^2)./(2*omega)).^(2/5);
         L_break = ldis(T,hb);
         %Shoaling Coefficient Evaluation
         Kr = SHOAL(L_break,hb);
         %Refraction Coefficient Evaluation
-        Ks = REFRA(T,hb,theta_o);
+        Ks = REFRA(bo, b);
         %Iteration of Hb
         Hb_iter = Ho*Ks*Kr;
         kappa_iter = b - a*(Hb_iter / (g*T^2));
