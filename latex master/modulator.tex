@@ -5,8 +5,8 @@
 %
 %-------------------------------Document Information-------------------------------%
 
-\newcommand{\Report}		{Final Project}			%Report Name
-\newcommand{\Author}		{Dylan Morano // Rebecca Cressman // Arielle De Souza // Scott Hara}		%Author
+\newcommand{\Report}		{OCE-408 Final Project}			%Report Name
+\newcommand{\Author}		{Dylan Morano, Rebecca Cressman, Arielle De Souza, Scott Hara}		%Author
 \newcommand{\Last}		{Morano, Cressman, De Souza, Hara}				%Authors Last Name
 \newcommand{\Class}		{OCE-311}			%Class Title
 \newcommand{\Professor}	{Jason Dahl}			%Professor(s)
@@ -120,7 +120,7 @@
 
 \begin{appendices}
 
-\section{MATLAB Calculations}
+\chapter{MATLAB Calculations}
 
 %	Matlab code parser block
 %-----------------------------------------------------------------
@@ -145,7 +145,43 @@
     captionpos=b,					% sets the caption-position to bottom
 }
 %-----------------------------------------------------------------
-%\lstinputlisting{}
+\section{Parser Function}
+\lstinputlisting{../"Task 1"/matlab/parser.m}
+\section{Task 1 Script}
+\lstinputlisting{../"Task 1"/matlab/task1code.m}
+\section{Task 2 Waveray Script}
+\lstinputlisting{../"Task 2"/matlab/"raytracing"/task2_waveray.m}
+\section{Task 2 Breaker Script}
+\lstinputlisting{../"Task 2"/matlab/"Breaker Line Analysis"/LATLONDIST.m}
+
+\chapter{Task 1 Appendicies}
+
+\section{Monthly Maximum output example}
+\lstinputlisting[caption = Example output from monethextrema\_new.m, label = lst:example150, firstline = 1, lastline = 5] {../"Task 1"/matlab/monthlyExtreme63079_150.txt}
+
+\section{Yearly Average Wave Conditions}
+
+\begin{minipage}{0.36\textwidth}
+\begin{table}[H]
+	\input{tables/yearly150.tex}
+	\label{yearly150}
+	\caption{150$^\circ$ Yearly Averages}
+\end{table}
+\end{minipage}
+\begin{minipage}{0.36\textwidth}
+\begin{table}[H]
+	\input{tables/yearly180.tex}
+	\label{yearly180}
+	\caption{180$^\circ$ Yearly Averages}
+\end{table}
+\end{minipage}
+\begin{minipage}{0.36\textwidth}
+\begin{table}[H]
+	\input{tables/yearly210.tex}
+	\label{yearly210}
+	\caption{210$^\circ$ Yearly Averages}
+\end{table}
+\end{minipage}
 
 \end{appendices}
 \end{document}

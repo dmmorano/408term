@@ -22,16 +22,16 @@ A Gumbel distribution can be used in order to model the distribution of the maxi
 
 20 years of hind-cast wave height data from the Rhode Island coastline was downloaded from the U.S. Army Core of Engineers Wave Information Studies (WIS) project. Due to the functions provided for this study being outdated, a parsing function was developed in order to convert the data from the WIS station in to a form which could be interpreted. This function would parse the date vector from the station data and arrange the array data in a way which interfaced with the provided functions.
 
-Using the $wavedir.m$ function, a rose plot consisting of 30 degree intervals was generated which displayed the concentrations of wave direction present at the studied location. This rose can be seen in Figure~\ref{fig:rose}.
+Using the $wavedir.m$ function, a rose plot consisting of 30 degree intervals was generated which displayed the concentrations of wave direction present at the studied location. This rose can be seen in Figure 1.2.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\textwidth]{./img/rose.png}
-	\label{fig:wis1}
+	\label{wisdir}
 	\caption{Wave Directions at Station 63079}
 \end{figure}
 
-From this rose plot it can be seen that the predominate wave directions were 150$^{\circ}$, 180$^{\circ}$, and 210$^{\circ}$. The monthly maximums were then calculated for each of these three directions. This was done using the $monthlyExtrema\_new.m$, which would output the extrema data for each month to a text file for each direction. An example of this output can be seen in Appendix SITE THIS. 
+From this rose plot it can be seen that the predominate wave directions were 150$^{\circ}$, 180$^{\circ}$, and 210$^{\circ}$. The monthly maximums were then calculated for each of these three directions. This was done using the $monthlyExtrema\_new.m$, which would output the extrema data for each month to a text file for each direction. An example of this output can be seen in Appendix B.1. 
 
 Using the $extremeDist2$\_$new.m$ function it was possible to render Gumbel distributions based off the calculated monthly extrema data. The distributions for angles 150$^{\circ}$, 180$^{\circ}$, and 210$^{\circ}$ respectively can be seen below in Figures~\ref{maxH150} through \ref{maxT210}.
 

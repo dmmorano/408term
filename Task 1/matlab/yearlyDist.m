@@ -1,4 +1,4 @@
-function yearlyDist(filename,direction,dirBin)
+function tableout = yearlyDist(filename,direction,dirBin)
 %yearlyDist(filename,direction,dirBin)
 % Created:      04-19-2004    
 % Author:       Matt Shultz
@@ -28,8 +28,24 @@ function yearlyDist(filename,direction,dirBin)
 %               dirBin      :   (optional, default = 30 degrees) size of direction band 
 %                               that will be centered around the direction of interest.
 
-[ID YEAR MM DD HH LONG LAT DPTH Hmo DTp Atp tmean wdvmn wv wsp wdir ] = textread(filename,'%f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f','headerlines',1);
-
+M = dlmread(filename);
+wdvmn = M(:,13);
+    ID = M(:,1);
+    YEAR = M(:,2);
+    MM = M(:,3);
+    DD = M(:,4);
+    HH = M(:,5);
+    LONG = M(:,6);
+    LAT = M(:,7);
+    Hmo = M(:,9);
+    DTp = M(:,10);
+    Atp = M(:,11);
+    tmean = M(:,12);
+    wv = M(:,14);
+    wsp = M(:,15);
+    wdir = M(:,16);
+    DPTH = ones(size(ID)).*33;
+    
 % check for optional arguments
 if nargin < 3, dirBin = 30; end     % no direction bin specified, use default of 30 degrees
 if nargin < 2, direction = -1; end  % no direction specified
@@ -111,6 +127,7 @@ fid = fopen(filename,'w');
 for k = 1:yearCount
     out = [years(k) yearHsAvg(k) yearTsAvg(k)];
     fprintf(fid,'%4.0f %9.5f %9.5f\r',out);
+    tableout(k,:) = out;
 end
 
 fclose(fid);

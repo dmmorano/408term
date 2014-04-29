@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {1.1}{\ignorespaces Location of WIS station 63079\relax }}{4}{figure.caption.3}
 \contentsline {figure}{\numberline {1.2}{\ignorespaces Wave Directions at Station 63079\relax }}{5}{figure.caption.4}
@@ -10,22 +8,11 @@
 \contentsline {figure}{\numberline {1.7}{\ignorespaces Gumbel distribution for Height at 210$^\circ $\relax }}{6}{figure.caption.7}
 \contentsline {figure}{\numberline {1.8}{\ignorespaces Gumbel distribution for Period at 210$^\circ $\relax }}{6}{figure.caption.7}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Wave Ray 20y Expected Wave Parameters at 150 deg\relax }}{10}{figure.caption.11}
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Wave Ray 20y Expected Wave Parameters at 180 deg\relax }}{10}{figure.caption.12}
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Wave Ray 20y Expected Wave Parameters at 210 deg\relax }}{11}{figure.caption.13}
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Wave Ray 50y Expected Wave Parameters at 150 deg\relax }}{11}{figure.caption.14}
-\contentsline {figure}{\numberline {2.5}{\ignorespaces Wave Ray 50y Expected Wave Parameters at 180 deg\relax }}{12}{figure.caption.15}
-\contentsline {figure}{\numberline {2.6}{\ignorespaces Wave Ray 50y Expected Wave Parameters at 210 deg\relax }}{12}{figure.caption.16}
-=======
-=======
->>>>>>> FETCH_HEAD
-\contentsline {figure}{\numberline {1}{\ignorespaces 20y Predicted Wave Rays at 150$^{\circ }$ angle of incidence\relax }}{4}{figure.caption.1}
-\contentsline {figure}{\numberline {2}{\ignorespaces 20y Predicted Wave Rays at 180$^{\circ }$ angle of incidence\relax }}{4}{figure.caption.3}
-\contentsline {figure}{\numberline {3}{\ignorespaces Breaking Wave Characteristics for 20 Year extreme wave at 210$^{\circ }$ angle of incidence\relax }}{5}{figure.caption.5}
-\contentsline {figure}{\numberline {4}{\ignorespaces 50y Predicted Wave Rays at 150$^{\circ }$ angle of incidence\relax }}{6}{figure.caption.6}
-\contentsline {figure}{\numberline {5}{\ignorespaces 50y Predicted Wave Rays at 180$^{\circ }$ angle of incidence\relax }}{6}{figure.caption.8}
-\contentsline {figure}{\numberline {6}{\ignorespaces 50y Predicted Wave Rays at 180$^{\circ }$ angle of incidence\relax }}{7}{figure.caption.10}
-<<<<<<< HEAD
->>>>>>> FETCH_HEAD
-=======
->>>>>>> FETCH_HEAD
+\contentsline {figure}{\numberline {2.1}{\ignorespaces 20y Predicted Wave Rays at 150$^{\circ }$ angle of incidence\relax }}{10}{figure.caption.11}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces 20y Predicted Wave Rays at 180$^{\circ }$ angle of incidence\relax }}{10}{figure.caption.13}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Breaking Wave Characteristics for 20 Year extreme wave at 210$^{\circ }$ angle of incidence\relax }}{11}{figure.caption.15}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces 50y Predicted Wave Rays at 150$^{\circ }$ angle of incidence\relax }}{12}{figure.caption.16}
+\contentsline {figure}{\numberline {2.5}{\ignorespaces 50y Predicted Wave Rays at 180$^{\circ }$ angle of incidence\relax }}{12}{figure.caption.18}
+\contentsline {figure}{\numberline {2.6}{\ignorespaces 50y Predicted Wave Rays at 180$^{\circ }$ angle of incidence\relax }}{13}{figure.caption.20}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
